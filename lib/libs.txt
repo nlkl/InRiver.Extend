@@ -1,0 +1,5 @@
+Place the following assemblies in this directory:
+
+* inRiver.Logging.dll
+* inRiver.Remoting.dll
+* inRiver.Server.exe
