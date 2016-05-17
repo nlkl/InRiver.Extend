@@ -15,28 +15,34 @@ namespace InRiver.Extend.Services
     public class WcfServiceBuilder<TContract, TService>
         where TService : TContract
     {
-        public ServiceHost CreateServiceHost(string relativeUrl)
+        private readonly string relativeUrl;
+
+        public WcfServiceBuilder(string relativeUrl)
         {
-            try
-            {
-                var uri = new Uri(ServerUri, relativeUrl);
-                var serviceHost = new ServiceHost(typeof(TService), new[] { uri });
+            if (relativeUrl == null) throw new ArgumentNullException(nameof(relativeUrl));
+            this.relativeUrl = relativeUrl;
+        }
 
-                var binding = CreateBinding();
-                var serviceEndpoint = serviceHost.AddServiceEndpoint(typeof(TContract), binding, string.Empty);
-                serviceEndpoint.Behaviors.Add(new AuthenticationInspector());
+        public ServiceHost CreateAndOpenServiceHost()
+        {
+            var serviceHost = CreateServiceHost();
+            serviceHost.Open();
+            return serviceHost;
+        }
 
-                var metadataBehavior = CreateMetadataBehavior();
-                serviceHost.Description.Behaviors.Add(metadataBehavior);
+        public ServiceHost CreateServiceHost()
+        {
+            var uri = new Uri(ServerUri, relativeUrl);
+            var serviceHost = new ServiceHost(typeof(TService), new[] { uri });
 
-                serviceHost.Open();
-                return serviceHost;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "An error occured when trying to create service host.");
-                throw;
-            }
+            var binding = CreateBinding();
+            var serviceEndpoint = serviceHost.AddServiceEndpoint(typeof(TContract), binding, string.Empty);
+            serviceEndpoint.Behaviors.Add(new AuthenticationInspector());
+
+            var metadataBehavior = CreateMetadataBehavior();
+            serviceHost.Description.Behaviors.Add(metadataBehavior);
+
+            return serviceHost;
         }
 
         private WSHttpBinding CreateBinding()
