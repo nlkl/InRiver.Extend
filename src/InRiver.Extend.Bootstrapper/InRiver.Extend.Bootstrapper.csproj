@@ -33,12 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="inRiver.Logging">
-      <HintPath>..\..\lib\inRiver.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="inRiver.Remoting">
-      <HintPath>..\..\lib\inRiver.Remoting.dll</HintPath>
-    </Reference>
     <Reference Include="inRiver.Server">
       <HintPath>..\..\lib\inRiver.Server.exe</HintPath>
     </Reference>
@@ -56,7 +50,6 @@
     <Compile Include="ExtendableServerWindowsService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Log.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

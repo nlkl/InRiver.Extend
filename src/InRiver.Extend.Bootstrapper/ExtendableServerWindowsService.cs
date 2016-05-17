@@ -1,7 +1,5 @@
-﻿using inRiver.Common.Log;
-using inRiver.Remoting.Log;
-using inRiver.Server;
-using inRiver.Server.Context;
+﻿using inRiver.Server;
+using InRiver.Extend.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;

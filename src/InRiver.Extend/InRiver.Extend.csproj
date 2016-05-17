@@ -30,8 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="inRiver.Logging">
+      <HintPath>..\..\lib\inRiver.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="inRiver.Remoting">
+      <HintPath>..\..\lib\inRiver.Remoting.dll</HintPath>
+    </Reference>
+    <Reference Include="inRiver.Server">
+      <HintPath>..\..\lib\inRiver.Server.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,8 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IStartupExtension.cs" />
+    <Compile Include="Logging\Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\PermissionSwitcher.cs" />
+    <Compile Include="Security\UserSwitcher.cs" />
+    <Compile Include="Security\SecurityDisabler.cs" />
+    <Compile Include="Services\WcfServiceBuilder.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
